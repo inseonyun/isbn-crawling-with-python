@@ -3,3 +3,4 @@ bs4==0.0.1
 selenium==4.1.5
 numpy==1.22.3
 pandas==1.4.2
+PyGithub==1.51

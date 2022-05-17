@@ -2,6 +2,8 @@ from asyncio.windows_events import NULL
 import requests
 import sys
 from bs4 import BeautifulSoup
+import os
+from github_utils import get_github_repo, upload_github_issue
 
 book_title = []
 book_isbn = []
@@ -65,3 +67,13 @@ if __name__ == '__main__':
     argument = sys.argv
     if len(argument) > 1:
         main(argument[1])
+        
+        access_token = os.environ['MY_GITHUB_TOKEN']
+        repository_name = "isbn-crawling-with-python"
+
+        issue_title = f"ISBN Crawling Data StartNumber : {argument[1]}"
+        upload_contents = data
+        repo = get_github_repo(access_token, repository_name)
+        upload_github_issue(repo, issue_title, upload_contents)
+        
+        print('Upload Github Issue Success!')
