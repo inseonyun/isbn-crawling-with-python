@@ -20,10 +20,10 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Get Text File start_Number
         run: |
-          for /f "delims=" %%i in (start_number.txt) do set startNumber=%%i
+          for /f "delims=" %%i in (start_number.txt) do (set startNumber=%%i)
       - name: Run main.py
         run: |
-          python main.py startNumber
+          python main.py %startNumber%
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
       - name: Push changed textFile
