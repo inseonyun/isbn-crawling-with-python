@@ -20,7 +20,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run main.py
         run: |
-          call getStart_Number.cmd
+          for /f "delims=" %%i in (start_number.txt) do (set startNumber=%%i)
           python main.py %startNumber%
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
