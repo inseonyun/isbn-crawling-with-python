@@ -63,11 +63,17 @@ def main(arg) :
             d.append(data[col][row])
         print(d)
 
+def editTextFile(current_arg) :
+    new_content = int(current_arg) + 10
+    text_file_path = './start_number.txt'
+    with open(text_file_path, 'w') as f:
+        f.write(str(new_content))
+
 if __name__ == '__main__':
     argument = sys.argv
     if len(argument) > 1:
         main(argument[1])
-        
+
         access_token = os.environ['MY_GITHUB_TOKEN']
         repository_name = "isbn-crawling-with-python"
 
@@ -75,5 +81,9 @@ if __name__ == '__main__':
         upload_contents = data
         repo = get_github_repo(access_token, repository_name)
         upload_github_issue(repo, issue_title, upload_contents)
-        
+
         print('Upload Github Issue Success!')
+
+        editTextFile(argument[1])
+
+        print('Edit TextFile')
