@@ -1,4 +1,6 @@
+from asyncio.windows_events import NULL
 import requests
+import sys
 from bs4 import BeautifulSoup
 
 book_title = []
@@ -47,12 +49,19 @@ def crawler(i):
     book_isbn.append(isbn)
     book_writer.append(writer)
 
-for i in range(1, 10):
-    crawler(i)
+def main(arg) :
+    startNumber = int(arg)
+    for i in range(startNumber, startNumber + 10):
+        crawler(i)
 
-### Check data
-for row in range(len(data[0])):
-    d = []
-    for col in range(len(data)):
-        d.append(data[col][row])
-    print(d)
+    ### Check data
+    for row in range(len(data[0])):
+        d = []
+        for col in range(len(data)):
+            d.append(data[col][row])
+        print(d)
+
+if __name__ == '__main__':
+    argument = sys.argv
+    if len(argument) > 1:
+        main(argument[1])
