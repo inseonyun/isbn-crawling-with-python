@@ -36,4 +36,4 @@ jobs:
           git config --global user.name ${USER_NAME}
           git add .
           git commit -m "TextFile Changed"
-          git push
+          git push https://${MY_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:main
