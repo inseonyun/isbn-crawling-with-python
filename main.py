@@ -4,6 +4,7 @@ import sys
 from bs4 import BeautifulSoup
 import os
 from github_utils import get_github_repo, upload_github_issue
+from upload_book_db import db_connect
 
 book_title = []
 book_isbn = []
@@ -104,4 +105,9 @@ if __name__ == '__main__':
         editTextFile(argument[1])
 
         print('Edit TextFile')
+
+        print('Process DB Start!!!!')
+        db_connect(argument[2], argument[3], argument[4], argument[5], data)
+
+        print('Process DB End!!!!')
         
