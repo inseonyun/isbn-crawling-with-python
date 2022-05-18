@@ -22,7 +22,7 @@ jobs:
         shell: cmd
         run: |
           call getStart_Number.cmd
-          python main.py %startNumber%
+          python main.py %startNumber% ${{ secrets.DB_HOST }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASS }} ${{ secrets.DB_DATABASE }}
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
       - name: Push changed textFile
