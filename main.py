@@ -71,8 +71,8 @@ def changeContens(list_data) :
     contents = ''
     for row in range(len(data[0])):
         str = ''
-        str += data[0][row] + '|'
-        str += data[1][row] + '|'
+        str += data[0][row] + ' | '
+        str += data[1][row] + ' | '
         str += data[2][row] + ' <br> \n'
         contents += str
         #print(str)
