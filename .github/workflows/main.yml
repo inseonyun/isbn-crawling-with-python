@@ -25,12 +25,15 @@ jobs:
           python main.py %startNumber%
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-      - uses: actions/labeler@v2
-        with: 
-          repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
       - name: Push changed textFile
         shell: cmd
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_NAME: ${{ secrets.USER_NAME }}
         run: |
+          git config --global user.email ${USER_EMAIL}
+          git config --global user.name ${USER_NAME}
           git add.
           git commit -m "TextFile Changed"
           git push
