@@ -18,13 +18,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run main.py
+      - name: Run main.py    
+        shell: cmd
         run: |
-          cmdlet getStart_Number.cmd
+          call getStart_Number.cmd
           python main.py %startNumber%
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-      - name: Push changed textFile
+      - name: Push changed textFile    
+        shell: cmd
         run: |
           git add.
           git commit -m "TextFile Changed"
