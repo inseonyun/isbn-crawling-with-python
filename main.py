@@ -57,11 +57,27 @@ def main(arg) :
         crawler(i)
 
     ### Check data
+    '''
     for row in range(len(data[0])):
         d = []
         for col in range(len(data)):
             d.append(data[col][row])
-        #print(d)
+        print(d)
+    '''
+
+def changeContens(list_data) :
+    # list가 오게 됨
+    # str로 파싱작업 해줌
+    contents = ''
+    for row in range(len(data[0])):
+        str = ''
+        str += data[0][row] + '|'
+        str += data[1][row] + '|'
+        str += data[2][row] + ' <br> \n'
+        contents += str
+        #print(str)
+
+    return contents
 
 def editTextFile(current_arg) :
     new_content = int(current_arg) + 10
@@ -71,6 +87,7 @@ def editTextFile(current_arg) :
 
 if __name__ == '__main__':
     argument = sys.argv
+    #argument.append(1)
     if len(argument) > 1:
         main(argument[1])
 
@@ -78,7 +95,7 @@ if __name__ == '__main__':
         repository_name = "isbn-crawling-with-python"
 
         issue_title = f"ISBN Crawling Data StartNumber : {argument[1]}"
-        upload_contents = data
+        upload_contents = changeContens(data)
         repo = get_github_repo(access_token, repository_name)
         upload_github_issue(repo, issue_title, upload_contents)
 
@@ -87,3 +104,4 @@ if __name__ == '__main__':
         editTextFile(argument[1])
 
         print('Edit TextFile')
+        
