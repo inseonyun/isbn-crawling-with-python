@@ -34,6 +34,6 @@ jobs:
         run: |
           git config --global user.email ${USER_EMAIL}
           git config --global user.name ${USER_NAME}
-          git add .
+          git add start_number.txt
           git commit -m "TextFile Changed"
-          git push https://${MY_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:main
+          git push
