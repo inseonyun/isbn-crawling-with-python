@@ -53,7 +53,7 @@ def crawler(i):
 
 def main(arg) :
     startNumber = int(arg)
-    for i in range(startNumber, startNumber + 10):
+    for i in range(startNumber, startNumber + 100):
         crawler(i)
 
     ### Check data
@@ -80,7 +80,7 @@ def changeContens(list_data) :
     return contents
 
 def editTextFile(current_arg) :
-    new_content = int(current_arg) + 10
+    new_content = int(current_arg) + 100
     text_file_path = './start_number.txt'
     with open(text_file_path, 'w') as f:
         f.write(str(new_content))
