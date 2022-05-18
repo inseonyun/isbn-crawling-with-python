@@ -61,7 +61,7 @@ def main(arg) :
         d = []
         for col in range(len(data)):
             d.append(data[col][row])
-        print(d)
+        #print(d)
 
 def editTextFile(current_arg) :
     new_content = int(current_arg) + 10
