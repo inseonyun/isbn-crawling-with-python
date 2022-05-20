@@ -20,18 +20,29 @@ jobs:
           pip install -r requirements.txt
       - name: Run main.py    
         shell: cmd
-        run: |
-          call getStart_Number.cmd
-          python main.py %startNumber% ${{ secrets.DB_HOST }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASS }} ${{ secrets.DB_DATABASE }}
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-      - name: Push changed textFile
+        run: |
+          call getStart_Number.cmd
+          python main.py %startNumber%
+      
+  upload:
+    runs-on: windows-latest
+    steps:
+        - name: upload DB
+          shell: cmd
+          run: |
+            python upload_book_db.py ${{ secrets.DB_HOST }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASS }} ${{ secrets.DB_DATABASE }}
+  push:
+    runs-on: windows-latest
+    steps:
+      - name: Push changed
         shell: cmd
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         run: |
           git config --global user.email ${{ secrets.USER_EMAIL }}
           git config --global user.name ${{ secrets.USER_NAME }}
-          git add start_number.txt
+          git add .
           git commit -m "TextFile Changed"
           git push
