@@ -22,3 +22,12 @@ def upload_github_issue(repo, title, body):
     :return: None
     """
     repo.create_issue(title=title, body=body)
+
+def close_github_issue(repo, title):
+    '''
+    title에 해당하는 이슈 닫음
+    '''
+    open_issues = repo.get_issues(state='open')
+    for issue in open_issues:
+        if title == issue.title:
+            issue.edit(state='closed')

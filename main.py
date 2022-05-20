@@ -3,7 +3,7 @@ import requests
 import sys
 from bs4 import BeautifulSoup
 import os
-from github_utils import get_github_repo, upload_github_issue
+from github_utils import get_github_repo, upload_github_issue, close_github_issue
 
 book_title = []
 book_isbn = []
@@ -111,6 +111,10 @@ if __name__ == '__main__':
         upload_github_issue(repo, issue_title, upload_contents)
 
         print('Upload Github Issue Success!')
+
+        close_github_issue(repo, issue_title)
+
+        print(f'{issue_title} close Issue Success!')
 
         # edit start_number.txt
         editTextFile(str(int(argument[1]) + 100), './start_number.txt')
