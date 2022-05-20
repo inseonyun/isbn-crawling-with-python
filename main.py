@@ -80,16 +80,27 @@ def changeContens(list_data) :
 
     return contents
 
-def editTextFile(current_arg) :
-    new_content = int(current_arg) + 100
-    text_file_path = './start_number.txt'
-    with open(text_file_path, 'w') as f:
-        f.write(str(new_content))
+def changeListToString(list_data) :
+    # list가 오게 됨
+    # 파싱하기 좋게 줄 구분은 \n, 책명 저자 isbn은 |로 구분함
+    contents = ''
+    for row in range(len(data[0])):
+        str = ''
+        str += data[0][row] + '|'
+        str += data[1][row] + '|'
+        str += data[2][row] + '\n'
+        contents += str
+
+    return contents
+
+def editTextFile(contents, text_file_path) :
+    with open(text_file_path, 'w', encoding='UTF-8') as f:
+        f.write(contents)
 
 if __name__ == '__main__':
     argument = sys.argv
     #argument.append(1)
-    if len(argument) > 1:
+    if len(argument) > 5:
         main(argument[1])
 
         access_token = os.environ['MY_GITHUB_TOKEN']
@@ -102,9 +113,14 @@ if __name__ == '__main__':
 
         print('Upload Github Issue Success!')
 
-        editTextFile(argument[1])
+        # edit start_number.txt
+        editTextFile(str(int(argument[1]) + 100), './start_number.txt')
+        print('Write start_number.txt')
 
-        print('Edit TextFile')
+        # write book_info.txt
+        text_contets = changeListToString(data)
+        editTextFile(text_contets, './book_info.txt')
+        print('Write book_info.txt')
 
         print('Process DB Start!!!!')
         db_connect(argument[2], argument[3], argument[4], argument[5], data)
