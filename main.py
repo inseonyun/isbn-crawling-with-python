@@ -4,7 +4,6 @@ import sys
 from bs4 import BeautifulSoup
 import os
 from github_utils import get_github_repo, upload_github_issue
-from upload_book_db import db_connect
 
 book_title = []
 book_isbn = []
@@ -100,7 +99,7 @@ def editTextFile(contents, text_file_path) :
 if __name__ == '__main__':
     argument = sys.argv
     #argument.append(1)
-    if len(argument) > 5:
+    if len(argument) > 1:
         main(argument[1])
 
         access_token = os.environ['MY_GITHUB_TOKEN']
@@ -121,9 +120,4 @@ if __name__ == '__main__':
         text_contets = changeListToString(data)
         editTextFile(text_contets, './book_info.txt')
         print('Write book_info.txt')
-
-        print('Process DB Start!!!!')
-        db_connect(argument[2], argument[3], argument[4], argument[5], data)
-
-        print('Process DB End!!!!')
         

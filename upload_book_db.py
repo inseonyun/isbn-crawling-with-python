@@ -1,5 +1,6 @@
 import pymysql
 import numpy as np
+import sys
 
 def db_connect(arg_host, arg_user, arg_pass, arg_db, data) :
     # set Value
@@ -36,3 +37,36 @@ def db_save(conn) :
     # Close DB
     print('Close DB')
     conn.close()
+
+def readTextFile(text_file_path) :
+    book_title = []
+    book_isbn = []
+    book_writer = []
+
+    contents = [
+        book_title,
+        book_isbn,
+        book_writer
+    ]
+    temp = ''
+    with open(text_file_path, 'r', encoding='UTF-8') as f:
+        temp = f.read()
+
+    rows = temp.split('\n')
+
+    for i in range(len(rows)) :
+        data = rows[i].split('|')
+        book_title.append(data[0])
+        book_isbn.append(data[1])
+        book_writer.append(data[2])
+
+    return contents
+
+if __name__ == '__main__':
+    argument = sys.argv
+    if len(argument) > 4:
+        print('Process DB Start!!!!')
+        file_data = readTextFile('./book_info.txt')
+        db_connect(argument[1], argument[2], argument[3], argument[4], file_data)
+
+        print('Process DB End!!!!')
