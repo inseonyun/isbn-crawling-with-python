@@ -83,11 +83,11 @@ def changeListToString(list_data) :
     # list가 오게 됨
     # 파싱하기 좋게 줄 구분은 \n, 책명 저자 isbn은 |로 구분함
     contents = ''
-    for row in range(len(data[0])):
+    for row in range(len(list_data[0])):
         str = ''
-        str += data[0][row] + '|'
-        str += data[1][row] + '|'
-        str += data[2][row] + '\n'
+        str += list_data[0][row] + '|'
+        str += list_data[1][row] + '|'
+        str += list_data[2][row] + '\n'
         contents += str
 
     return contents
