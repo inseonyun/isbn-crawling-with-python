@@ -25,7 +25,7 @@ def db_insert(cursor, data) :
 
         # insert Data
         # 테이블명 변경 필요
-        sql = 'insert into Book_Status_Info values(%s, %s, %s, %d)'
+        sql = 'insert into book_status values(%s, %s, %s, %d)'
         vals = (data[0][row], data[1][row], data[2][row], quantity)
         cursor.execute(sql, vals)
 
