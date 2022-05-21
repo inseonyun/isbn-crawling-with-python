@@ -25,17 +25,10 @@ jobs:
         run: |
           call getStart_Number.cmd
           python main.py %startNumber%
-      
-  upload:
-    runs-on: windows-latest
-    steps:
-        - name: upload DB
-          shell: cmd
-          run: |
-            python upload_book_db.py ${{ secrets.DB_HOST }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASS }} ${{ secrets.DB_DATABASE }}
-  push:
-    runs-on: windows-latest
-    steps:
+      - name: upload DB
+        shell: cmd
+        run: |
+          python upload_book_db.py ${{ secrets.DB_HOST }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASS }} ${{ secrets.DB_DATABASE }}
       - name: Push changed
         shell: cmd
         env:
