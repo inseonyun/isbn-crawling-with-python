@@ -69,11 +69,11 @@ def changeContens(list_data) :
     # list가 오게 됨
     # str로 파싱작업 해줌
     contents = ''
-    for row in range(len(data[0])):
+    for row in range(len(list_data[0])):
         str = ''
-        str += data[0][row] + ' | '
-        str += data[1][row] + ' | '
-        str += data[2][row] + ' <br> \n'
+        str += list_data[0][row] + ' | '
+        str += list_data[1][row] + ' | '
+        str += list_data[2][row] + ' <br> \n'
         contents += str
         #print(str)
 
