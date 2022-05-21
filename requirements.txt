@@ -3,3 +3,4 @@ bs4==0.0.1
 numpy==1.22.3
 PyGithub==1.51
 pymysql==1.0.2
+cryptography==37.0.2
