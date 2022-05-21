@@ -29,6 +29,7 @@ def crawler(i):
     title = ''
     for tag in h2_tag:
         title = str(tag.text).replace('\xa0', ' ')
+        title = title.strip()
 
     ### 책 저자, ISBN 정보 가져옴
     writer = ''
@@ -40,11 +41,15 @@ def crawler(i):
                 writer = tag.text.split('|')[0]
                 writer = writer.split('저자 ')[1]
                 writer = writer.replace('\xa0', ' ')
+                writer = writer.strip()
 
-            if 'ISBN' in tag.text:
+        if 'ISBN ' in tag.text:
+            if '|' in tag.text:
                 isbn = tag.text.split('|')[1]
                 isbn = isbn.replace('ISBN', '')
-                isbn = isbn.strip()
+            else :
+                isbn = tag.text.split('ISBN')[1]
+            isbn = isbn.strip()
     
     ### book_info add
     book_title.append(title)
