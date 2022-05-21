@@ -90,6 +90,8 @@ def changeListToString(list_data) :
         str += list_data[2][row] + '\n'
         contents += str
 
+    contents = contents.rstrip()
+
     return contents
 
 def editTextFile(contents, text_file_path) :
