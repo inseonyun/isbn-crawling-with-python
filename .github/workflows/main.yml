@@ -28,6 +28,7 @@ jobs:
           
   upload:
     runs-on: windows-latest
+    needs: [build]
     steps:
       - name: upload DB
         shell: cmd
@@ -36,6 +37,7 @@ jobs:
 
   push:
     runs-on: windows-latest
+    needs: [build, upload]
     steps:
       - name: Push changed
         shell: cmd
