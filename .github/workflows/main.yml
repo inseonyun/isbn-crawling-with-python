@@ -20,14 +20,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
-      - uses: actions/cache@v3
-        id: cache
-        with:
-            path: ~\AppData\Local\pip\Cache
-            key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-            restore-keys: |
-                ${{ runner.os }}-pip-
                 
       - name: Run main.py    
         shell: cmd
@@ -51,14 +43,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Caching dependencies
-        uses: actions/cache@v3
-        id: cache
+      - name: Download build result for build job
+        uses: actions/download-artifact@v3
         with:
-            path: ~\AppData\Local\pip\Cache
-            key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-            restore-keys: |
-                ${{ runner.os }}-pip-
+            name: 'isbn-crawling-with-python'
+            path: 'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
     
       - name: upload DB
         shell: cmd
