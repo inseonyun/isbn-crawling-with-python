@@ -45,8 +45,11 @@ def crawler(i):
 
         if 'ISBN ' in tag.text:
             if '|' in tag.text:
-                isbn = tag.text.split('|')[1]
-                isbn = isbn.replace('ISBN', '')
+                tmplist = tag.text.split('|')
+                for tmptxt in tmplist:
+                    if 'ISBN' in tmptxt:
+                        isbn = tmptxt.replace('ISBN', '')
+                        break
             else :
                 isbn = tag.text.split('ISBN')[1]
             isbn = isbn.strip()
