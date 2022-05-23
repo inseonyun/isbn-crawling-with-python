@@ -23,6 +23,10 @@ def crawler(i):
     #url = 'https://book.naver.com/bookdb/book_detail.naver?bid=21480555'
     response = page(i)
     soup = BeautifulSoup(response.content, "html.parser")
+    
+    # 타이틀이 로그인이라면 성인 책이므로 그냥 넘김
+    if '로그인' in soup.head.title.text :
+        return
 
     ### 책 이름 정보 가져옴
     h2_tag = soup.findAll('h2')
@@ -137,4 +141,3 @@ if __name__ == '__main__':
         text_contets = changeListToString(data)
         editTextFile(text_contets, './book_info.txt')
         print('Write book_info.txt')
-        
