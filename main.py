@@ -55,6 +55,9 @@ def crawler(i):
             isbn = isbn.strip()
     
     ### book_info add
+    if title == '' or isbn == '' or writer == '':
+        return
+
     book_title.append(title)
     book_isbn.append(isbn)
     book_writer.append(writer)
