@@ -47,9 +47,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
             name: 'isbn-crawling-with-python'
-            path: |
-                'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\start_number.txt'
-                'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\book_info.txt'
+            path: 'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\'
     
       - name: Install dependencies
         run: |
@@ -71,9 +69,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
             name: 'isbn-crawling-with-python'
-            path: |
-                'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\start_number.txt'
-                'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\book_info.txt'
+            path: 'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\'
             
       - name: Push changed
         shell: cmd
