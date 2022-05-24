@@ -71,6 +71,11 @@ jobs:
             name: 'isbn-crawling-with-python'
             path: 'D:\a\isbn-crawling-with-python\isbn-crawling-with-python\'
             
+      - name: Change Runner TimeZone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneWindows: "Japan Standard Time"
+            
       - name: Push changed
         shell: cmd
         env:
