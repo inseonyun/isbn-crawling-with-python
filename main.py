@@ -39,6 +39,10 @@ def crawler(i):
     writer = ''
     isbn = ''
     div_tag = soup.find('div', {'class':'book_info_inner'})
+    
+    if div_tag == None:
+        return
+    
     for tag in div_tag:
         if '|' in tag.text:
             if '저자' in tag.text:
